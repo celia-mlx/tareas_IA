@@ -1,11 +1,12 @@
-# Tareas IA
+# Tareas de IA
 
-## 📁 Cours
-- cours/introduction.md
-- cours/exercices.md
+##  Cursos
+- cursos/introduccion.md
+- cursos/ejercicios.md
 
-## 📝 Notes
-- notes/notes.txt
+## Notas
+- notas/apuntes.txt
 
-## 🔗 Liens utiles
-- ressources/liens.md
+## Enlaces útiles
+- recursos/enlaces.md
+
