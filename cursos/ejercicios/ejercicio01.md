@@ -9,19 +9,16 @@ Identificar, en tu vida cotidiana o académica, sistemas que emplean inteligenci
 
 ### 1. Nombre:
 ChatGPT
-
 **Uso:**
 Lo utilicé para resolver dudas, traducir textos y ayudarme a redactar trabajos académicos.
 
 ### 2. Nombre:
 Microsoft Copilot
-
 **Uso:**
 Lo usé para buscar información, resumir documentos y obtener ayuda con tareas de estudio.
 
 ### 3. Nombre:
 Google Translate
-
 **Uso:**
 Lo utilicé para traducir documentos y comprender textos escritos en otros idiomas.
 
