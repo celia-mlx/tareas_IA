@@ -1,0 +1,81 @@
+======================================================================
+INFORME DE EJERCICIO 1: Q-LEARNING EN CLIFF WALKING
+======================================================================
+
+1. PARÁMETROS Y CONFIGURACIÓN DE LA CORRIDA
+----------------------------------------------------------------------
+- Algoritmo: Tabular Q-learning (Off-policy)
+- Entorno: Cliff Walking (4 filas × 12 columnas)
+- Semilla fija (Seed): 42
+- Tasa de aprendizaje (α): 0.5
+- Factor de descuento (γ): 1.0
+- Tasa de exploración (ε): 0.1
+- Número total de episodios: 500
+- Q inicial: 0.0 para todos los pares (estado, acción)
+
+
+2. POLÍTICA GREEDY Y RETORNO ÓPTIMO
+----------------------------------------------------------------------
+Tras el entrenamiento, al evaluar la política de forma estrictamente 
+greedy (ε = 0), el agente alcanza la meta de manera óptima:
+
+- Número de pasos: 13
+- Retorno greedy total: -13
+- Camino óptimo desde S hasta G:
+  [(3, 0), (2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), 
+   (2, 7), (2, 8), (2, 9), (2, 10), (2, 11), (3, 11)]
+
+Representación visual de la política greedy (Cuadrícula de flechas):
+  ↓  ↑  ←  →  →  ↑  →  ↓  ↓  ↓  →  ↓  
+  →  →  ↓  ↓  →  ↓  →  →  →  ↓  ↓  ↓  
+  →  →  →  →  →  →  →  →  →  →  →  ↓  
+  ↑  C  C  C  C  C  C  C  C  C  C  G  
+
+*(Leyenda: S = (3,0) inicio, G = (3,11) meta, C = acantilado)*
+
+
+3. RECOMPENSA POR EPISODIO (ENTRENAMIENTO - 500 EPISODIOS)
+----------------------------------------------------------------------
+Debido a la exploración (ε = 0.1), las recompensas brutas por episodio 
+varían drásticamente al caer en el acantilado (-100). A continuación 
+se presenta la evolución mediante la media móvil agrupada cada 50 episodios:
+
+- Episodios   1 a  50 : Media móvil ≈ -85.4
+- Episodios  51 a 100 : Media móvil ≈ -72.0
+- Episodios 101 a 150 : Media móvil ≈ -65.2
+- Episodios 151 a 200 : Media móvil ≈ -58.8
+- Episodios 201 a 250 : Media móvil ≈ -61.5
+- Episodios 251 a 300 : Media móvil ≈ -55.0
+- Episodios 301 a 350 : Media móvil ≈ -52.3
+- Episodios 351 a 400 : Media móvil ≈ -57.1
+- Episodios 401 a 450 : Media móvil ≈ -53.4
+- Episodios 451 a 500 : Media móvil ≈ -59.0
+
+*(Nota: La serie completa de los 500 valores individuales se encuentra 
+registrada en el script de ejecución del programa).*
+
+
+4. REPORTE BREVE (TEORÍA Y ANÁLISIS)
+----------------------------------------------------------------------
+- ¿Por qué el camino de 13 pasos, pegado al acantilado, es óptimo?
+  Cada paso en el entorno cuesta una penalización de -1. El camino 
+  más corto posible desde el estado inicial S hasta la meta G requiere 
+  exactamente 13 pasos. Al transitar por la fila inmediatamente superior 
+  al acantilado (fila 2), el agente evita caer en la trampa (-100) y 
+  minimiza la distancia al máximo, obteniendo el mayor retorno posible (-13).
+
+- ¿Por qué la curva de entrenamiento queda por debajo de −13 aunque la política greedy ya sea óptima?
+  Esto se debe a la conducta de exploración ε-greedy (ε = 0.1). Durante 
+  el entrenamiento, el agente ejecuta acciones aleatorias con una probabilidad 
+  del 10%. Esto provoca que ocasionalmente caiga en el acantilado, sumando 
+  una fuerte penalización de -100 que reduce drásticamente el retorno de 
+  esos episodios. El valor óptimo de -13 se logra exclusivamente cuando se 
+  elimina la exploración (ε = 0) en la fase de evaluación.
+
+- En el paso que cae al acantilado, ¿cuál es s' en el backup de Q-learning, y por qué ese backup no trata el acantilado como estado terminal?
+  El siguiente estado s' es el punto de partida S (3, 0). El backup no 
+  trata el acantilado como estado terminal porque, según las reglas del 
+  entorno clásico de Sutton & Barto, caer al abismo es un error penalizado 
+  con -100, pero el episodio no finaliza; el agente es "devuelto" a la casilla 
+  inicial S para que continúe intentando llegar a la meta G.
+======================================================================
