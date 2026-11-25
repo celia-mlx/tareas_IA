@@ -16,6 +16,9 @@
 | Ejercicio_5 | [Búsqueda informada, ejercicio 1](./Ejercicio_5/) |
 | Ejercicio_6 | [Perceptrón multicapa, ejercicio 1](./Ejercicio_6/) |
 | Ejercicio_7 | [Clustering con k-medias, ejercicio 1](./Ejercicio_7/) |
+| Ejercicio_8 | [Q-learning, ejercicio 1](./Ejercicio_8/) |
+| Ejercicio_9 | [Razonamiento lógico, ejercicio 1](./Ejercicio_9/) |
+| Ejercicio_10 | [Visión computacional, ejercicio 1](./Ejercicio_10/) |
 
 ---
 
@@ -30,4 +33,7 @@
 ├── Ejercicio_4/
 ├── Ejercicio_5/
 ├── Ejercicio_6/
-└── Ejercicio_7/
+├── Ejercicio_7/
+├── Ejercicio_8/
+├── Ejercicio_9/
+└── Ejercicio_10/
